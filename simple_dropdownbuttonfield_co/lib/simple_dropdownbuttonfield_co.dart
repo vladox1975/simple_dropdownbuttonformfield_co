@@ -93,8 +93,8 @@ class DropDownButtonFormFieldCityCo extends ConsumerWidget {
 class DropDownButtonFormFieldStateCo extends ConsumerWidget {
   final InputDecoration inputDecoration;
   //esta funcion retorna el valor del departamento elegido como un string
-  final String? Function(String value) stringStateValue;
-  final String? Function(String value) codeStateValue;
+  final String? Function(String value)? stringStateValue;
+  final String? Function(String value)? codeStateValue;
   final Widget? hint;
   final int elevation;
   final TextStyle? style;
@@ -109,8 +109,8 @@ class DropDownButtonFormFieldStateCo extends ConsumerWidget {
   final FocusNode? focusNode;
 
   const DropDownButtonFormFieldStateCo({
-    required this.stringStateValue,
-    required this.codeStateValue,
+    this.stringStateValue,
+    this.codeStateValue,
     required this.inputDecoration,
     this.hint,
     this.elevation = 8,
@@ -144,10 +144,10 @@ class DropDownButtonFormFieldStateCo extends ConsumerWidget {
         //Los providers se encargan de retornar el valor del dropdown
         ref.read(providerMunicipio.notifier).state = null;
         ref.read(providerDepartamento.notifier).state = value!;
-        stringStateValue(departamentoMap
+        stringStateValue!(departamentoMap
             .where((element) => element['idDpto'] == value)
             .first['departamento']!);
-        codeStateValue(value);
+        codeStateValue!(value);
       },
       items: getDepartamento(),
     );
