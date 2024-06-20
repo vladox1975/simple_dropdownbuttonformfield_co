@@ -4,7 +4,7 @@ Esta librería permite implementar rapidamente dos controles DropDownButtonFormF
 
 ## Features
 
-Esta libreria usas dos Widget que retornan con la función stringState los valores de la selección del departamento y el municipio Colombiano.
+Esta libreria usas dos Widget que retornan con la función stringStateValue el String con el nombre y codeStateValue el codigo la selección del departamento y el municipio Colombiano.
 
 [![Video demostración](https://net.subastar.com.co/dropdown.png)](https://youtu.be/8bbbpTKveCM)
 
@@ -32,19 +32,22 @@ runApp(
 
 
 ```dart
- body: Center(
+  body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             DropDownButtonFormFieldStateCo(
+              style: TextStyle(color: Colors.blue),
               inputDecoration: inputDecoration(label: 'Departamento'),
-              stringState: (value) => departamento = value,
+              stringStateValue: (value) => departamento = value!,
+              codeStateValue: (value) => departamento = value!,
             ),
             DropDownButtonFormFieldCityCo(
               inputDecoration: inputDecoration(label: 'Municipio'),
-              stringState: (value) => municipio = value,
+              stringCityValue: (value) => municipio = value!,
+              codeCityValue: (value) => municipio = value!,
             ),
           ],
         ),
-      ),;
+      ),
 ```

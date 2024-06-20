@@ -26,6 +26,10 @@
 
 * Se completa la documentación.
 
-## 0.2.2
+## 0.2.6
 
 * Se agrega función que retorna el code del departamento y el municipio.
+
+## 0.2.7
+
+* Se corrigen las funciones que retornan el code del departamento y el municipio.

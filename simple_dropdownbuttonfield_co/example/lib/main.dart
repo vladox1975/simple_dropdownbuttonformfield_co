@@ -1,50 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:simple_dropdownbuttonfield_co/simple_dropdownbuttonfield_co.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MainApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  @override
-  State<MainApp> createState() => _MainAppState();
-}
-
-class _MainAppState extends State<MainApp> {
-  String? departamento = '';
-  String? municipio = '';
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DropDownButtonFormFieldStateCo(
-                inputDecoration:
-                    const InputDecoration(labelText: 'Departamento'),
-                stringState: (value) => departamento = value,
-              ),
-              DropDownButtonFormFieldCityCo(
-                stringState: ((value) => municipio = value),
-                inputDecoration: const InputDecoration(labelText: 'Municipio'),
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              print(departamento);
-              print(municipio);
-            });
-          },
-          child: const Icon(Icons.add),
+    return const MaterialApp(
+      title: 'Flutter Demo',
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  String? departamento;
+
+  String? municipio;
+
+  @override
+  Widget build(BuildContext context) {
+    setState(() {
+      debugPrint('statement: $departamento');
+    });
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            DropDownButtonFormFieldStateCo(
+              style: TextStyle(color: Colors.blue),
+              inputDecoration: inputDecoration(label: 'Departamento'),
+              stringStateValue: (value) => departamento = value!,
+              codeStateValue: (value) => departamento = value!,
+            ),
+            DropDownButtonFormFieldCityCo(
+              inputDecoration: inputDecoration(label: 'Municipio'),
+              stringCityValue: (value) => municipio = value!,
+              codeCityValue: (value) => municipio = value!,
+            ),
+          ],
         ),
       ),
     );
